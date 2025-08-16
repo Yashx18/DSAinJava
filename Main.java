@@ -1,14 +1,8 @@
 import java.util.Scanner;
-
+import java.util.ArrayList;
 class Main {
-    public static void main(String[] args) {
 
-        Scanner userInput = new Scanner(System.in);
-
-        pattern22(5);
-
-        userInput.close();
-    }
+    // PATTERN PROBLEMS TO BUILD LOGICAL THINKING
 
     static void pattern1(int n) {
         for (int i = 0; i < n; i++) {
@@ -322,5 +316,72 @@ class Main {
             System.out.println();
         }
 
+    }
+
+    // MATH PROBLEMS TO MANIPULATE NUMBERS
+
+    static int countDigits(int n) {
+        int cnt = 0;
+        while (n > 0) {
+            n /= 10;
+            cnt++;
+        }
+        return cnt;
+    }
+    static void reverseNumber(int n) {
+        int lastValue = 0;
+        int reversed = 0;
+        while (n > 0) {
+            lastValue = n % 10;
+            reversed = reversed * 10 + lastValue;
+            n /= 10;
+        }
+        System.out.println(reversed);
+    }
+    static void checkPalindrome(int n) {
+        int num = n;
+        int lastValue = 0;
+        int reversed = 0;
+        while (n > 0) {
+            lastValue = n % 10;
+            reversed = reversed * 10 + lastValue;
+            n /= 10;
+        }
+
+        if (num == reversed) {
+            System.out.printf("%d is a Palindrome Number.", num);
+        } else {
+            System.out.printf("%d is a NOT Palindrome Number.", num);
+        }
+    }
+    static void HCF(int n1, int n2) {
+        int range = (n1 > n2) ? n2 : n1;
+        int hcf = 0;
+        for (int i = 1; i <= range; i++) {
+            if (n1 % i == 0 && n2 % i == 0) {
+                hcf = i;
+            }
+        }
+        System.out.printf("Highest Common Factor of %d and %d is %d.\n",n1, n2, hcf);
+    }
+
+    static void checkPrime(int n) {
+        ArrayList<Integer> divisors = new ArrayList<>();
+        for (int i = 1; i <= n; i++) {
+            if (n % i == 0) {
+                divisors.add(i);
+            }
+        }
+
+        if (divisors.size() == 2) {
+            System.out.printf("%d is a Prime number.",n );
+        } else {
+            System.out.printf("%d is NOT a Prime number.",n );            
+        }
+    }
+    public static void main(String[] args) {
+        Scanner userInput = new Scanner(System.in);
+        checkPrime(163);
+        userInput.close();
     }
 }
