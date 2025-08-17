@@ -364,7 +364,6 @@ class Main {
         }
         System.out.printf("Highest Common Factor of %d and %d is %d.\n",n1, n2, hcf);
     }
-
     static void checkPrime(int n) {
         ArrayList<Integer> divisors = new ArrayList<>();
         for (int i = 1; i <= n; i++) {
@@ -379,9 +378,54 @@ class Main {
             System.out.printf("%d is NOT a Prime number.",n );            
         }
     }
+    static void armstrongNum(int n) {
+        int num = n;
+        int num2 = n;
+        int lastDigit = 0;
+        int digits = 0;
+        int cnt = 0;
+        int res = 0;
+        while (num > 0) {
+            lastDigit = num % 10;
+            num /= 10;
+            cnt++;
+        }
+
+        for (int i = 0; i < cnt; i++) {
+            digits = num2 % 10;
+            num2 /= 10;
+            res += Math.pow(digits, cnt);
+        }
+
+        System.out.printf("Length of %d is %d\n",n,cnt);
+        System.out.printf("%d\n",res);
+        if (res == n) {
+            System.out.printf("%d is an Armstring Number.\n", n);
+        }
+    }
+    static void printDivisors(int n) {
+        ArrayList<Integer> arr = new ArrayList<>();
+        for (int i = 1; i <= n; i++) {
+            if (n % i == 0) {
+                arr.add(i);
+            }
+        }
+
+        System.out.println("Divisors of " + n + " are " + arr + ".");
+    }
+
+    // RECURSIONS
+
+    static void recursion1(int n) {
+        if (n != 0) {
+             System.out.println("Printing my name using Recursion 'KEN'.");
+            recursion1(n-1);
+        }
+       
+    }
     public static void main(String[] args) {
         Scanner userInput = new Scanner(System.in);
-        checkPrime(163);
+        recursion1(4);
         userInput.close();
     }
 }
