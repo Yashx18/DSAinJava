@@ -1,5 +1,5 @@
-import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Arrays;
 class Main {
 
     // PATTERN PROBLEMS TO BUILD LOGICAL THINKING
@@ -416,16 +416,59 @@ class Main {
 
     // RECURSIONS
 
-    static void recursion1(int n) {
+    static void recursion(int n) {
         if (n != 0) {
-             System.out.println("Printing my name using Recursion 'KEN'.");
-            recursion1(n-1);
+            System.out.println("Printing my name using Recursion 'KEN'.");
+            recursion(n - 1);
         }
-       
+
+    }
+    static void recursion3(int i, int n) {
+        if (i > n) {
+            return;
+        }
+        System.out.println(i);
+        recursion3(i+1, n);
+    }
+    static void recursion4(int i, int n) {
+        if (i > n) {
+            return;
+        }
+        System.out.println(n);
+        recursion4(i, n-1);
+    }
+    static void recursion5( int n, int sum) {
+        if (n < 0) {
+            System.out.println(sum);
+            return;
+        } 
+        
+        recursion5(n-1, sum+n);
+    }
+
+    static void recursion6(int n, int sum) {
+        if (n <= 1) {
+            System.out.println(sum);
+            return;
+        }
+
+        recursion6(n-1, sum*=n);
+    }
+    static void recursion7(int[] arr, int left, int right) {
+        if (left > arr.length / 2 - 1) {
+            System.out.println(Arrays.toString(arr));
+            return;
+        }
+        int temp = arr[left];
+        arr[left] = arr[right];
+        arr[right] = temp;
+        recursion7(arr, left+1 , right-1);
     }
     public static void main(String[] args) {
-        Scanner userInput = new Scanner(System.in);
-        recursion1(4);
-        userInput.close();
+        int[] arr = { 10, 9 , 8,7,6,5,4,3,2,1 };
+        int left = 0;
+        int right = arr.length-1;
+        recursion7( arr, left, right);
+      
     }
 }
