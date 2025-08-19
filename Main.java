@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
+
 class Main {
 
     // PATTERN PROBLEMS TO BUILD LOGICAL THINKING
@@ -328,6 +330,7 @@ class Main {
         }
         return cnt;
     }
+
     static void reverseNumber(int n) {
         int lastValue = 0;
         int reversed = 0;
@@ -338,6 +341,7 @@ class Main {
         }
         System.out.println(reversed);
     }
+
     static void checkPalindrome(int n) {
         int num = n;
         int lastValue = 0;
@@ -354,6 +358,7 @@ class Main {
             System.out.printf("%d is a NOT Palindrome Number.", num);
         }
     }
+
     static void HCF(int n1, int n2) {
         int range = (n1 > n2) ? n2 : n1;
         int hcf = 0;
@@ -362,8 +367,9 @@ class Main {
                 hcf = i;
             }
         }
-        System.out.printf("Highest Common Factor of %d and %d is %d.\n",n1, n2, hcf);
+        System.out.printf("Highest Common Factor of %d and %d is %d.\n", n1, n2, hcf);
     }
+
     static void checkPrime(int n) {
         ArrayList<Integer> divisors = new ArrayList<>();
         for (int i = 1; i <= n; i++) {
@@ -373,11 +379,12 @@ class Main {
         }
 
         if (divisors.size() == 2) {
-            System.out.printf("%d is a Prime number.",n );
+            System.out.printf("%d is a Prime number.", n);
         } else {
-            System.out.printf("%d is NOT a Prime number.",n );            
+            System.out.printf("%d is NOT a Prime number.", n);
         }
     }
+
     static void armstrongNum(int n) {
         int num = n;
         int num2 = n;
@@ -397,12 +404,13 @@ class Main {
             res += Math.pow(digits, cnt);
         }
 
-        System.out.printf("Length of %d is %d\n",n,cnt);
-        System.out.printf("%d\n",res);
+        System.out.printf("Length of %d is %d\n", n, cnt);
+        System.out.printf("%d\n", res);
         if (res == n) {
             System.out.printf("%d is an Armstring Number.\n", n);
         }
     }
+
     static void printDivisors(int n) {
         ArrayList<Integer> arr = new ArrayList<>();
         for (int i = 1; i <= n; i++) {
@@ -423,27 +431,30 @@ class Main {
         }
 
     }
+
     static void recursion3(int i, int n) {
         if (i > n) {
             return;
         }
         System.out.println(i);
-        recursion3(i+1, n);
+        recursion3(i + 1, n);
     }
+
     static void recursion4(int i, int n) {
         if (i > n) {
             return;
         }
         System.out.println(n);
-        recursion4(i, n-1);
+        recursion4(i, n - 1);
     }
-    static void recursion5( int n, int sum) {
+
+    static void recursion5(int n, int sum) {
         if (n < 0) {
             System.out.println(sum);
             return;
-        } 
-        
-        recursion5(n-1, sum+n);
+        }
+
+        recursion5(n - 1, sum + n);
     }
 
     static void recursion6(int n, int sum) {
@@ -452,8 +463,9 @@ class Main {
             return;
         }
 
-        recursion6(n-1, sum*=n);
+        recursion6(n - 1, sum *= n);
     }
+
     static void recursion7(int[] arr, int left, int right) {
         if (left > arr.length / 2 - 1) {
             System.out.println(Arrays.toString(arr));
@@ -462,13 +474,68 @@ class Main {
         int temp = arr[left];
         arr[left] = arr[right];
         arr[right] = temp;
-        recursion7(arr, left+1 , right-1);
+        recursion7(arr, left + 1, right - 1);
     }
+
+    static void palindromeRecursion(String word, int left, int right) {
+        boolean palindrome = false;
+        if (left > right / 2) {
+            palindrome = true;
+            System.out.printf("'%s' is a Palindrome.\n", word);
+            System.out.printf("Palindrome : %b.\n", palindrome);
+            return;
+        } else if (word.charAt(left) != word.charAt(right)) {
+            palindrome = false;
+            System.out.printf("%s is NOT a Palindrome.\n", word);
+            System.out.println(palindrome);
+            return;
+
+        }
+        palindromeRecursion(word, left + 1, right - 1);
+
+    }
+
+    static void fibonacciRecursion(int n) {
+        int[] arr = new int[n];
+        if (n >= 1)
+            arr[0] = 0;
+        if (n >= 2)
+            arr[1] = 1;
+
+        for (int i = 2; i < n; i++) {
+            arr[i] = arr[i - 1] + arr[i - 2];
+        }
+        System.out.println(Arrays.toString(arr));
+    }
+
+    // HASHING
+
+    static void num(int n, int[] arr) {
+        int choice;
+
+        int[] hash = new int[n + 1];
+        Arrays.fill(hash, 0);
+
+        for (int i = 0; i < arr.length; i++) {
+            hash[arr[i]] += 1;
+        }
+
+        Scanner userInput = new Scanner(System.in);
+        System.out.println(Arrays.toString(hash));
+
+        System.out.print("Enter the number you want to know about : ");
+        choice = userInput.nextInt();
+
+        if (choice < 0 || choice > 10) {
+            System.out.println("Enter Valid Input (0-10)");
+        }
+        System.out.println(hash[choice]);
+
+    }
+
     public static void main(String[] args) {
-        int[] arr = { 10, 9 , 8,7,6,5,4,3,2,1 };
-        int left = 0;
-        int right = arr.length-1;
-        recursion7( arr, left, right);
-      
+        int[] arr = { 1, 2, 3, 4, 10, 1, 3, 4, 10, 2, 5, 6, 3, 2, 3, 1, 4 };
+        num(10, arr);
+
     }
 }
