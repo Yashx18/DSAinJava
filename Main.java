@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -5,6 +6,7 @@ import java.util.Scanner;
 class Main {
 
     // PATTERN PROBLEMS TO BUILD LOGICAL THINKING
+    static Scanner userInput = new Scanner(System.in);
 
     static void pattern1(int n) {
         for (int i = 0; i < n; i++) {
@@ -520,7 +522,6 @@ class Main {
             hash[arr[i]] += 1;
         }
 
-        Scanner userInput = new Scanner(System.in);
         System.out.println(Arrays.toString(hash));
 
         System.out.print("Enter the number you want to know about : ");
@@ -533,9 +534,75 @@ class Main {
 
     }
 
+    static void str(int n, String word) {
+        int[] arr = new int[n];
+        Arrays.fill(arr, 0);
+
+        for (int i = 0; i < word.length(); i++) {
+            int index = word.charAt(i);
+            arr[index - 'a'] += 1;
+        }
+
+        int len = word.length() - 1;
+        while (len > 0) {
+            System.out.print("Enter the Letter you want to search for : ");
+            char letter = userInput.next().charAt(0);
+
+            int index = letter - 'a';
+
+            System.out.println(arr[index]);
+            len--;
+        }
+
+        userInput.close();
+    }
+
+    static void frequency(int[] arr) {
+        int highest = 0;
+        int lowest = 0;
+        Arrays.sort(arr);
+        int n = arr[arr.length - 1];
+        int[] hashed = new int[n+1];
+        Arrays.fill(hashed, 0);
+        for (int i = 0; i < arr.length; i++) {
+            hashed[arr[i]] += 1;
+        }
+        for (int item : arr) {
+            System.out.println(item);
+            for (int i = 0; i < hashed.length; i++) {
+                if (hashed[item] > highest) {
+                    highest = hashed[item];
+                }
+                if (hashed[item] < lowest) {
+                    lowest = hashed[item];
+                }
+            }
+        }
+        System.out.println(highest);
+        System.out.println(lowest);
+       int highestValue = indexOf(hashed, highest);
+       int lowestValue = indexOf(hashed, lowest);
+        System.out.println(hashed[highestValue]);
+        System.out.println(hashed[lowestValue]);
+        System.out.println(Arrays.toString(hashed));
+    }
+
+    static int indexOf(int[] arr, int target) {
+        int found = 0;
+        for (int item : arr) {
+            if (arr[item] == target) {
+                found++;
+            }
+        }
+        return found;
+        
+        
+    }
+
     public static void main(String[] args) {
-        int[] arr = { 1, 2, 3, 4, 10, 1, 3, 4, 10, 2, 5, 6, 3, 2, 3, 1, 4 };
-        num(10, arr);
+        int[] arr = { 1, 2, 3, 4, 10, 1, 3, 4, 10, 2, 5, 6, 3, 2, 3, 1, 4,9,8,7,4,4,1 ,0,0,6,7,8,8,8,8,8,};
+        // String word = "Hello";
+        frequency(arr);
 
     }
 }
