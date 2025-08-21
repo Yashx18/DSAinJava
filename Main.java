@@ -562,7 +562,7 @@ class Main {
         int lowest = 0;
         Arrays.sort(arr);
         int n = arr[arr.length - 1];
-        int[] hashed = new int[n+1];
+        int[] hashed = new int[n + 1];
         Arrays.fill(hashed, 0);
         for (int i = 0; i < arr.length; i++) {
             hashed[arr[i]] += 1;
@@ -580,8 +580,8 @@ class Main {
         }
         System.out.println(highest);
         System.out.println(lowest);
-       int highestValue = indexOf(hashed, highest);
-       int lowestValue = indexOf(hashed, lowest);
+        int highestValue = indexOf(hashed, highest);
+        int lowestValue = indexOf(hashed, lowest);
         System.out.println(hashed[highestValue]);
         System.out.println(hashed[lowestValue]);
         System.out.println(Arrays.toString(hashed));
@@ -595,14 +595,32 @@ class Main {
             }
         }
         return found;
-        
-        
+
     }
 
+    // SORTING TECHNIQUES
+
+    // First => Selection SORT
+    static void srt(int[] arr) {
+        String res = Arrays.toString(arr);
+        System.out.printf("This is the Original Array: %s\n",res);
+        for (int i = 0; i < arr.length - 1; i++) {
+            // System.out.println(arr[i]);
+            for (int j = i; j < arr.length; j++) {
+                int temp = arr[i];
+                if (arr[j] < arr[i]) {
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+        }
+        System.out.printf("This is the Sorted Array %s\n",Arrays.toString(arr));
+    }
+  
     public static void main(String[] args) {
-        int[] arr = { 1, 2, 3, 4, 10, 1, 3, 4, 10, 2, 5, 6, 3, 2, 3, 1, 4,9,8,7,4,4,1 ,0,0,6,7,8,8,8,8,8,};
-        // String word = "Hello";
-        frequency(arr);
+        int[] arr = { 1, 2, 3, 4, 10, 1, 3, 4, 10, 2, 5, 6, 3, 2, 3, 1, 4, 9, 8, 7, 4, 4, 1, 0, 0, 6, 7, 8, 8, 8, 8,
+                8, };
+        srt(arr);
 
     }
 }
