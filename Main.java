@@ -601,9 +601,9 @@ class Main {
     // SORTING TECHNIQUES
 
     // First => Selection SORT
-    static void srt(int[] arr) {
+    static void selectionSort(int[] arr) {
         String res = Arrays.toString(arr);
-        System.out.printf("This is the Original Array: %s\n",res);
+        System.out.printf("This is the Original Array: %s\n", res);
         for (int i = 0; i < arr.length - 1; i++) {
             // System.out.println(arr[i]);
             for (int j = i; j < arr.length; j++) {
@@ -612,15 +612,39 @@ class Main {
                     arr[i] = arr[j];
                     arr[j] = temp;
                 }
+                System.out.printf("This is the Sorted Array %s\n", Arrays.toString(arr));
+
             }
         }
-        System.out.printf("This is the Sorted Array %s\n",Arrays.toString(arr));
+        System.out.printf("This is the Sorted Array %s\n", Arrays.toString(arr));
     }
-  
+
+    // Second => Bubble SORT
+    static void bubbleSort(int[] arr) {
+        int n = arr.length;
+        boolean swapped = false;
+        System.out.println(Arrays.toString(arr));
+        for (int i = n; i >= 1; i--) {
+            for (int j = 0; j < i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                    swapped = true;
+                    System.out.println(Arrays.toString(arr));
+                }
+
+            }
+            System.out.println(swapped);
+            if (!swapped) {
+                break;
+            }
+        }
+    }
+
     public static void main(String[] args) {
-        int[] arr = { 1, 2, 3, 4, 10, 1, 3, 4, 10, 2, 5, 6, 3, 2, 3, 1, 4, 9, 8, 7, 4, 4, 1, 0, 0, 6, 7, 8, 8, 8, 8,
-                8, };
-        srt(arr);
+        int[] arr = { 1,2,3,4,5};
+        bubbleSort(arr);
 
     }
 }
