@@ -656,6 +656,7 @@ class Main {
         }
         System.out.println(Arrays.toString(arr));
     }
+    // Learned theory of Merge SORT
 
     public static void main(String[] args) {
         int[] arr = { 5, 4, 3, 2, 1, 1, 2, 3, 4, 5 };
