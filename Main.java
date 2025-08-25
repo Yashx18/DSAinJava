@@ -647,7 +647,7 @@ class Main {
         for (int i = 1; i < arr.length; i++) {
             int key = arr[i];
             int j = i - 1;
-            
+
             while (j >= 0 && arr[j] > key) {
                 arr[j + 1] = arr[j];
                 j--;
@@ -657,10 +657,60 @@ class Main {
         System.out.println(Arrays.toString(arr));
     }
     // Learned theory of Merge SORT
+    // Fourth => Merge SORT (Uses Recursion)
+
+    static void merge(int[] arr, int low, int mid, int high) {
+        int n1 = mid - low + 1;
+        int n2 = high - mid;
+        int[] temp = new int[n1 + n2];
+        int left = low;
+        int right = mid + 1;
+        int index = 0;
+
+        // Merge elements from both halves in sorted order
+        while (left <= mid && right <= high) {
+            if (arr[left] <= arr[right]) {
+                temp[index] = arr[left];
+                left++;
+            } else {
+                temp[index] = arr[right];
+                right++;
+            }
+            index++;
+        }
+
+        // Copy remaining elements from left half
+        while (left <= mid) {
+            temp[index] = arr[left];
+            left++;
+            index++;
+        }
+        
+        // Copy remaining elements from right half
+        while (right <= high) {
+            temp[index] = arr[right];
+            right++;
+            index++;
+        }
+
+        for (int i = 0; i < temp.length; i++) {
+            arr[low + i] = temp[i];
+        }
+    }
+
+    static void mergeSort(int[] arr, int low, int high) {
+        if (low >= high) return; 
+        int mid = (low + high) / 2;
+        mergeSort(arr, low, mid);
+        mergeSort(arr, mid + 1, high);
+        merge(arr, low, mid, high);
+        System.out.println(Arrays.toString(arr));
+    }
 
     public static void main(String[] args) {
-        int[] arr = { 5, 4, 3, 2, 1, 1, 2, 3, 4, 5 };
-        insertionSort(arr);
-
+        int[] arr = { 5, 4, 3, 2, 1, 1, 2, 3, 4, 5, 11, 12, 21, 2, 6, 12, 18 };
+        int low = 0;
+        int high = arr.length - 1;
+        mergeSort(arr, low, high);
     }
 }
