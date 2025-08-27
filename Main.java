@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -685,7 +684,7 @@ class Main {
             left++;
             index++;
         }
-        
+
         // Copy remaining elements from right half
         while (right <= high) {
             temp[index] = arr[right];
@@ -699,18 +698,58 @@ class Main {
     }
 
     static void mergeSort(int[] arr, int low, int high) {
-        if (low >= high) return; 
+        if (low >= high)
+            return;
         int mid = (low + high) / 2;
         mergeSort(arr, low, mid);
         mergeSort(arr, mid + 1, high);
         merge(arr, low, mid, high);
         System.out.println(Arrays.toString(arr));
     }
+    
+    // Main QuickSort function
+    static void quickSort(int[] arr, int low, int high) {
+        if (low < high) {
+            // Step 1: Partition the array, get pivot index
+            int pivotIndex = partition(arr, low, high);
+
+            // Step 2: Recursively sort elements before pivot
+            quickSort(arr, low, pivotIndex - 1);
+
+            // Step 3: Recursively sort elements after pivot
+            quickSort(arr, pivotIndex + 1, high);
+        }
+    }
+
+    // Partition function
+    public static int partition(int[] arr, int low, int high) {
+        int pivot = arr[high]; // choosing last element as pivot
+        int i = low - 1; // index of smaller element
+
+        // Loop through array
+        for (int j = low; j < high; j++) {
+            if (arr[j] <= pivot) {
+                i++;
+                // swap arr[i] and arr[j]
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+
+        // Put pivot in its correct place
+        int temp = arr[i + 1];
+        arr[i + 1] = arr[high];
+        arr[high] = temp;
+
+        return i + 1; // return pivot index
+    }
 
     public static void main(String[] args) {
         int[] arr = { 5, 4, 3, 2, 1, 1, 2, 3, 4, 5, 11, 12, 21, 2, 6, 12, 18 };
         int low = 0;
         int high = arr.length - 1;
-        mergeSort(arr, low, high);
+        quickSort(arr, low, high);
+        System.out.println(Arrays.toString(arr));
     }
 }
