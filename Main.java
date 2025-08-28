@@ -706,7 +706,7 @@ class Main {
         merge(arr, low, mid, high);
         System.out.println(Arrays.toString(arr));
     }
-    
+
     // Main QuickSort function
     static void quickSort(int[] arr, int low, int high) {
         if (low < high) {
@@ -745,11 +745,42 @@ class Main {
         return i + 1; // return pivot index
     }
 
+    // ARRAYS
+
+    // First => Largest element in the Array
+    static void largestElement(int[] arr) {
+        int largest = arr[0];
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] > largest) {
+                largest = arr[i];
+            }
+        }
+        System.out.println(largest);
+    }
+
+    static void secondLargest(int[] arr) {
+        int largest = arr[0];
+        int secondLargest = arr[0];
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] > largest) {
+                largest = arr[i];
+            }
+        }
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] > secondLargest && arr[i] < largest) {
+                secondLargest = arr[i];
+            }
+        }
+
+        System.out.println("The Largest Element is "+largest);
+        System.out.println("The Second Largest Element is " +secondLargest);
+    }
+
     public static void main(String[] args) {
-        int[] arr = { 5, 4, 3, 2, 1, 1, 2, 3, 4, 5, 11, 12, 21, 2, 6, 12, 18 };
-        int low = 0;
-        int high = arr.length - 1;
-        quickSort(arr, low, high);
-        System.out.println(Arrays.toString(arr));
+        int[] arr = { 5, 4, 3, 2, 1, 1, 2, 3, 4, 5, 11, 12, 21, 2, 6, 12, 18 ,19};
+        // int low = 0;
+        // int high = arr.length - 1;
+        secondLargest(arr);
+        // System.out.println(Arrays.toString(arr));
     }
 }
