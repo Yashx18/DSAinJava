@@ -758,6 +758,7 @@ class Main {
         System.out.println(largest);
     }
 
+    // Second => Second largest element in the Array
     static void secondLargest(int[] arr) {
         int largest = arr[0];
         int secondLargest = arr[0];
@@ -772,15 +773,44 @@ class Main {
             }
         }
 
-        System.out.println("The Largest Element is "+largest);
-        System.out.println("The Second Largest Element is " +secondLargest);
+        System.out.println("The Largest Element is " + largest);
+        System.out.println("The Second Largest Element is " + secondLargest);
+    }
+
+    // Third => Check if the Array is sorted
+    static void isSorted(int[] arr) {
+        boolean isSorted = false;
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] >= arr[i - 1]) {
+                isSorted = true;
+            } else {
+                isSorted = false;
+                break;
+            }
+        }
+        System.out.println("Is the Array sorted ? : " + isSorted);
+    }
+
+    // Fourth => Remove Duplicated from the Array
+    static void removeDuplicates(int[] arr) {
+        int i = 0;
+        for (int j = 1; j < arr.length; j++) {
+            if (arr[j] != arr[i]) {
+                arr[i + 1] = arr[j];
+                i++;
+            }
+        }
+        for (int j = 0; j < arr[i]; j++) {
+
+            System.out.println(arr[j]);
+        }
     }
 
     public static void main(String[] args) {
-        int[] arr = { 5, 4, 3, 2, 1, 1, 2, 3, 4, 5, 11, 12, 21, 2, 6, 12, 18 ,19};
+        int[] arr = { 1, 2, 2, 2, 3, 3, 3, 4, 5, 5, 6 ,7};
         // int low = 0;
         // int high = arr.length - 1;
-        secondLargest(arr);
+        removeDuplicates(arr);
         // System.out.println(Arrays.toString(arr));
     }
 }
