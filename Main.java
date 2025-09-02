@@ -808,22 +808,49 @@ class Main {
 
     // Fifth => Left rotate the Array by one place
     static void leftRotate(int[] arr, int d) {
+        int n = arr.length;
+        d %= n;
+        int[] tempArr = new int[d];
+
+        System.out.println(Arrays.toString(arr));
+
         for (int i = 0; i < d; i++) {
-            int temp = arr[i];
-            for (int j = d; j < arr.length; j++) {
-                arr[j - d] = arr[j];
-            }
-            arr[arr.length - 1] = temp;
-            System.out.println(Arrays.toString(arr));
+            tempArr[i] = arr[i];
         }
+        System.out.println(Arrays.toString(tempArr));
+        for (int i = d; i < n; i++) {
+            arr[i - d] = arr[i];
+        }
+        for (int i = n - d; i < n; i++) {
+            arr[i] = tempArr[i - (n - d)];
+        }
+        System.out.println(Arrays.toString(arr));
+
+        // for (int i = 0; i < d; i++) {
+        // int temp = arr[i];
+        // for (int j = d; j < arr.length; j++) {
+        // arr[j - d] = arr[j];
+        // }
+        // arr[arr.length - 1] = temp;
+        // System.out.println(Arrays.toString(arr));
+        // }
+    }
+
+    // Sixth => Move all the zeros to the end
+    static void moveZeros(int[] arr) {
+        System.out.println(Arrays.toString(arr));
+        int n = arr.length;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == 0) {
+                int temp = arr[i];
+                arr[n-1-i   ] = temp;
+            }
+        }
+        System.out.println(Arrays.toString(arr));
     }
 
     public static void main(String[] args) {
-        int[] arr = { 1, 2, 3, 4, 5 };
-        int d = 2;
-        // int low = 0;
-        // int high = arr.length - 1;
-        leftRotate(arr, d);
-        // System.out.println(Arrays.toString(arr));
+        int[] arr = { 1, 0, 2, 0, 3, 0, 4, 5 };
+        moveZeros(arr);
     }
 }
