@@ -842,8 +842,11 @@ class Main {
         int n = arr.length;
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] == 0) {
+                int last = arr[n - 1];
                 int temp = arr[i];
-                arr[n-1-i   ] = temp;
+                last = temp;
+                temp = last;
+                last--;
             }
         }
         System.out.println(Arrays.toString(arr));
